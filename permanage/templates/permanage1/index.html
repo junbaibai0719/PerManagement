@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 使用CSS样式来控制div布局 -->
+    <style type="text/css">
+        /*定义全局的div布局*/
+        div#global {
+            /*设置宽度，设置百分比可以根据浏览器自适应宽度*/
+            width: 100%;
+            /*设置高度，950px是设置是实体高度，不能自适应的*/
+            height: 1080px;
+            /*设置背景颜色，方便区分布局*/
+            background-color: silver;
+        }
+
+        /*定义头部布局，前面的div可以不用写，#号前面默认有个id，凡事定义了id的标签，都可以用#号来表示*/
+        #header {
+            width: 100%;
+            height: 100px;
+            background-color: lightskyblue;
+        }
+
+        h1 {
+            color: #fafafa;
+            letter-spacing: 0;
+            text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135
+        }
+
+        #content_menu {
+            width: 15%;
+            height: 700px;
+            background-color: papayawhip;
+            /*定义浮动，不定义的话，界面会乱*/
+            float: left;
+        }
+
+        #content_body {
+            width: 85%;
+            height: 700px;
+            background-color: floralwhite;
+            float: right;
+        }
+
+        #browser_bar {
+            float: right;
+        }
+
+        #floor {
+            /*删除浮动，不然会被其他的浮动给遮住*/
+            clear: both;
+            height: 100px;
+            background-color: whitesmoke;
+        }
+    </style>
+    <title>{% block title %}
+        人事管理系统
+    {% endblock %}</title>
+</head>
+<body>
+{% block body %}
+    {% block header %}
+    <div id="header">
+        <h1>人事管理</h1>
+        <div id="browser_bar">
+            <a href="{% url 'permanage:login' %}">登录</a>
+            <a href="{% url 'permanage:sign' %}">注册</a>
+        </div>
+
+    </div>
+    {% endblock %}
+
+    {% block content_menu %}
+        <div id="content_menu">
+
+            <li><a href="">部门</a></li>
+            <li><a href="">人员管理</a></li>
+            <li><a href="">工资管理</a></li>
+            <li><a href="">人员调动</a></li>
+            <li><a href="">公积金</a></li>
+            <li><a href="">职工培训</a></li>
+            <li><a href="">职工考核</a></li>
+            <li><a href="">劳动管理</a></li>
+            <li><a href="">劳动保险</a></li>
+
+        </div>
+    {% endblock %}
+    {% block content_body %}
+        <div id="content_body">
+
+            我是一个小可爱
+
+        </div>
+    {% endblock %}
+    <div id="floor">
+        <ul>
+            <span><a href="">帮助</a></span>
+            <span><a href="">关于</a></span>
+
+            <span><a href="">刘豪</a></span>
+            <span><a href="">刘岩</a></span>
+
+            <span><a href="">李文博</a></span>
+            <span><a href="">李瑞章</a></span>
+
+            <span><a href="">李文博</a></span>
+            <span><a href="">李瑞章</a></span>
+
+            <span><a href="">郭邦胜</a></span>
+            <span><a href="">林柏君</a></span>
+        </ul>
+
+    </div>
+{% endblock %}
+
+</body>
+</html>
