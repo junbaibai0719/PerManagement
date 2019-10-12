@@ -136,7 +136,7 @@ class Person(models.Model):
     personnation = models.CharField(db_column='PersonNation', max_length=5, blank=True, null=True)  # Field name made lowercase.
     personpoliticaloutlook = models.CharField(db_column='PersonPoliticalOutlook', max_length=6, blank=True, null=True)  # Field name made lowercase.
     personismarry = models.IntegerField(db_column='PersonIsMarry', blank=True, null=True)  # Field name made lowercase.
-    persontitle = models.CharField(db_column='PersonTitle', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    personidtitle = models.ForeignKey('Title', models.DO_NOTHING, db_column='PersonidTitle', blank=True, null=True)  # Field name made lowercase.
     personcolmajor = models.CharField(db_column='PersoncolMajor', max_length=10, blank=True, null=True)  # Field name made lowercase.
     personeducation = models.CharField(db_column='PersonEducation', max_length=2, blank=True, null=True)  # Field name made lowercase.
     persongraduationschool = models.CharField(db_column='PersonGraduationSchool', max_length=10, blank=True, null=True)  # Field name made lowercase.
@@ -144,8 +144,8 @@ class Person(models.Model):
     personbasesalary = models.DecimalField(db_column='PersonBaseSalary', max_digits=10, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
     personidnumber = models.CharField(db_column='PersonIDNumber', max_length=18, blank=True, null=True)  # Field name made lowercase.
     persondepartementnum = models.ForeignKey(Department, models.DO_NOTHING, db_column='PersonDepartementNum', blank=True, null=True)  # Field name made lowercase.
-    personworkposition = models.CharField(db_column='PersonWorkPosition', max_length=10, blank=True, null=True)  # Field name made lowercase.
-    personteam = models.CharField(db_column='PersonTeam', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    personworkposition = models.ForeignKey('Workposition', models.DO_NOTHING, db_column='PersonWorkPosition', blank=True, null=True)  # Field name made lowercase.
+    personidteam = models.ForeignKey('Team', models.DO_NOTHING, db_column='PersonidTeam', blank=True, null=True)  # Field name made lowercase.
     personadmissiondate = models.DateField(db_column='PersonAdmissionDate', blank=True, null=True)  # Field name made lowercase.
     personparticipatedate = models.DateField(db_column='PersonParticipateDate', blank=True, null=True)  # Field name made lowercase.
     personcategory = models.CharField(db_column='PersonCategory', max_length=3, blank=True, null=True)  # Field name made lowercase.
@@ -159,6 +159,16 @@ class Person(models.Model):
     class Meta:
         managed = False
         db_table = 'person'
+
+
+class Publicfund(models.Model):
+    idpublicfund = models.AutoField(db_column='idPublicFund', primary_key=True)  # Field name made lowercase.
+    publicfundaccount = models.CharField(db_column='PublicFundAccount', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    publicfundidperson = models.CharField(db_column='PublicFundidPerson', max_length=8, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'publicfund'
 
 
 class Salary(models.Model):
@@ -192,7 +202,36 @@ class Salary(models.Model):
     salaryelectricityfee = models.DecimalField(db_column='SalaryElectricityFee', max_digits=10, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
     salaryreal = models.DecimalField(db_column='SalaryReal', max_digits=10, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
     salarycomment = models.CharField(db_column='SalaryComment', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    salaryiddepartment = models.ForeignKey(Department, models.DO_NOTHING, db_column='SalaryidDepartment', blank=True, null=True)  # Field name made lowercase.
+    salaryidteam = models.ForeignKey('Team', models.DO_NOTHING, db_column='SalaryidTeam', blank=True, null=True)  # Field name made lowercase.
+    salaryidtitle = models.ForeignKey('Title', models.DO_NOTHING, db_column='SalaryidTitle', blank=True, null=True)  # Field name made lowercase.
+    salaryidworkposition = models.ForeignKey('Workposition', models.DO_NOTHING, db_column='SalaryidWorkPosition', blank=True, null=True)  # Field name made lowercase.
+    salarypaydate = models.DateField(db_column='SalaryPayDate', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
         db_table = 'salary'
+
+
+class Team(models.Model):
+    idteam = models.AutoField(db_column='idTeam', primary_key=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'team'
+
+
+class Title(models.Model):
+    idtitle = models.AutoField(db_column='idTitle', primary_key=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'title'
+
+
+class Workposition(models.Model):
+    idworkposition = models.AutoField(db_column='idWorkPosition', primary_key=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'workposition'
