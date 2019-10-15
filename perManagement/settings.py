@@ -50,6 +50,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'perManagement.urls'
 
+# AUTHENTICATION_BACKENDS = ('permanage.views.CustomBackend',)
+
 TEMPLATES = [
 	{
 		'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -101,6 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
 	},
 ]
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -117,4 +120,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+
+
+
 STATIC_URL = '/static/'
+# 静态资源目录
+STATICFILES_DIRS = (
+    os.path.join(os.path.dirname(__file__), '../static/').replace('\\','/'),
+)

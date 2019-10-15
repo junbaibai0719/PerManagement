@@ -2,21 +2,23 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+        {% block title %}
         <title>Admin - Home </title>
+        {% endblock %}
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="/static/permanage/images/favicon.ico">
 
         <!--Morris Chart-->
-        <link rel="stylesheet" href="assets/libs/morris-js/morris.css" />
+        <link rel="stylesheet" href="/static/permanage/libs/morris-js/morris.css" />
 
         <!-- App css -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+        <link href="/static/permanage/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/static/permanage/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="/static/permanage/css/app.min.css" rel="stylesheet" type="text/css" />
 
     </head>
 
@@ -67,7 +69,7 @@
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item active">
                                     <div class="notify-icon">
-                                        <img src="assets/images/users/user-1.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                        <img src="/static/permanage/images/users/user-1.jpg" class="img-fluid rounded-circle" alt="" /> </div>
                                     <p class="notify-details">Cristina Pride</p>
                                     <p class="text-muted mb-0 user-msg">
                                         <small>Hi, How are you? What about our next meeting</small>
@@ -87,7 +89,7 @@
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <div class="notify-icon">
-                                        <img src="assets/images/users/user-4.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                        <img src="/static/permanage/images/users/user-4.jpg" class="img-fluid rounded-circle" alt="" /> </div>
                                     <p class="notify-details">Karen Robinson</p>
                                     <p class="text-muted mb-0 user-msg">
                                         <small>Wow ! this admin looks good and awesome design</small>
@@ -137,7 +139,7 @@
 
                     <li class="dropdown notification-list">
                         <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <img src="assets/images/users/user-1.jpg" alt="user-image" class="rounded-circle">
+                            <img src="/static/permanage/images/users/user-1.jpg" alt="user-image" class="rounded-circle">
                             <span class="pro-user-name ml-1">
                                 昵称 <i class="mdi mdi-chevron-down"></i> 
                             </span>
@@ -190,7 +192,7 @@
                 <div class="logo-box">
                     <a href="index.html" class="logo text-center">
                         <span class="logo-lg">
-                            <img src="assets/images/logo-dark.png" alt="" height="50">
+                            <img src="/static/permanage/images/logo-dark.png" alt="" height="50">
                             <!-- <span class="logo-lg-text-light">Xeria</span> -->
                         </span>
                     </a>
@@ -218,7 +220,7 @@
 
                     <!-- User box -->
                     <div class="user-box text-center">
-                        <img src="assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-lg">
+                        <img src="/static/permanage/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-lg">
                         <div class="dropdown">
                             <a href="#" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block" data-toggle="dropdown">昵称</a>
                             <div class="dropdown-menu user-pro-dropdown">
@@ -286,12 +288,12 @@
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="nav-second-level" aria-expanded="false">
-                                    <li><a href="manage_person.html">人员管理</a></li>
-                                    <li><a href="manage_person.html">工资管理</a></li>
-                                    <li><a href="manage_person.html">调动管理</a></li>
-                                    <li><a href="manage_person.html">公积金管理</a></li>
-                                    <li><a href="manage_person.html">培训管理</a></li>
-                                    <li><a href="manage_person.html">劳动管理</a></li>
+                                    <li><a href="{% url 'permanage:personManage' %}">人员管理</a></li>
+                                    <li><a href="{% url 'permanage:salaryManage' %}">工资管理</a></li>
+                                    <li><a href="{% url 'permanage:transferManage' %}">调动管理</a></li>
+                                    <li><a href="{% url 'permanage:fundManage' %}">公积金管理</a></li>
+                                    <li><a href="{% url 'permanage:trainManage' %}">培训管理</a></li>
+                                    <li><a href="{% url 'permanage:labourManage' %}">劳动管理</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -315,7 +317,9 @@
                 <div class="content">
 
                     <!-- Start Content-->
-     
+                {% block content %}
+                
+                {% endblock %}
                 </div> <!-- content -->
 
                 <!-- Footer Start -->
@@ -359,7 +363,7 @@
                 <!-- User box -->
                 <div class="user-box">
                     <div class="user-img">
-                        <img src="assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
+                        <img src="/static/permanage/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
                         <a href="javascript:void(0);" class="user-edit"><i class="mdi mdi-pencil"></i></a>
                     </div>
             
@@ -412,7 +416,7 @@
                 <div class="p-3">
                     <div class="inbox-widget">
                         <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/user-2.jpg" class="rounded-circle" alt=""></div>
+                            <div class="inbox-item-img"><img src="/static/permanage/images/users/user-2.jpg" class="rounded-circle" alt=""></div>
                             <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Tomaslau</a></p>
                             <p class="inbox-item-text">I've finished it! See you so...</p>
                         </div>
@@ -428,20 +432,20 @@
         <div class="rightbar-overlay"></div>
 
         <!-- Vendor js -->
-        <script src="assets/js/vendor.min.js"></script>
+        <script src="/static/permanage/js/vendor.min.js"></script>
 
         <!-- knob plugin -->
-        <script src="assets/libs/jquery-knob/jquery.knob.min.js"></script>
+        <script src="/static/permanage/libs/jquery-knob/jquery.knob.min.js"></script>
 
         <!--Morris Chart-->
-        <script src="assets/libs/morris-js/morris.min.js"></script>
-        <script src="assets/libs/raphael/raphael.min.js"></script>
+        <script src="/static/permanage/libs/morris-js/morris.min.js"></script>
+        <script src="/static/permanage/libs/raphael/raphael.min.js"></script>
 
         <!-- Dashboard init js-->
-        <script src="assets/js/pages/dashboard.init.js"></script>
+        <script src="/static/permanage/js/pages/dashboard.init.js"></script>
 
         <!-- App js -->
-        <script src="assets/js/app.min.js"></script>
+        <script src="/static/permanage/js/app.min.js"></script>
         
     </body>
 </html>
